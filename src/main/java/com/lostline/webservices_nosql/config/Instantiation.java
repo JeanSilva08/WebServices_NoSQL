@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.lostline.webservices_nosql.domain.Post;
 import com.lostline.webservices_nosql.domain.User;
+import com.lostline.webservices_nosql.dto.AuthorDTO;
 import com.lostline.webservices_nosql.repository.PostRepository;
 import com.lostline.webservices_nosql.repository.UserRepository;
 
@@ -35,10 +36,12 @@ public class Instantiation implements CommandLineRunner {
 		User zidane = new User(null, "Zinedine Zidane", "zidane@gmail.com");
 		User denilson = new User(null, "Denílson de Oliveira", "denilsonshow@gmail.com");
 
-		Post post1 = new Post(null, sdf.parse("23/04/2021"), "Partiu viagem!", "Vou viajar para NY! tmj!!!!", ronaldo);
-		Post post2 = new Post(null, sdf.parse("29/05/2022"), "Bom dia!", "Coé rapazeadinha, que dia lindo heim!", ronaldo);
-
 		userRepository.saveAll(Arrays.asList(ronaldo, zidane, denilson));
+		
+		Post post1 = new Post(null, sdf.parse("23/04/2021"), "Partiu viagem!", "Vou viajar para NY! tmj!!!!", new AuthorDTO (ronaldo));
+		Post post2 = new Post(null, sdf.parse("29/05/2022"), "Bom dia!", "Coé rapazeadinha, que dia lindo heim!", new AuthorDTO(ronaldo));
+
+		
 		postRepository.saveAll(Arrays.asList(post1, post2));
 	}
 }
